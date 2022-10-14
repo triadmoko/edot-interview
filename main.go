@@ -1,6 +1,10 @@
 package main
 
 import (
+	"net/http"
+	"time"
+
+	ratelimit "github.com/JGLTechnologies/gin-rate-limit"
 	"github.com/gin-gonic/gin"
 	"github.com/triadmoko/edot-interview/configs"
 	"github.com/triadmoko/edot-interview/handlers"
@@ -23,6 +27,16 @@ func main() {
 
 	router := gin.Default()
 
+	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
+		Rate:  time.Minute,
+		Limit: 5,
+	})
+	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
+		ErrorHandler: errorHandler,
+		KeyFunc:      keyFunc,
+	})
+
+	router.Use(mw)
 	product := router.Group("/product")
 	product.POST("/", handler.CreateProduct)
 	product.GET("/", handler.GetProducts)
@@ -40,4 +54,11 @@ func main() {
 	category.DELETE("/:id", handler.DeleteCategory)
 
 	router.Run()
+}
+func keyFunc(c *gin.Context) string {
+	return c.ClientIP()
+}
+func errorHandler(c *gin.Context, info ratelimit.Info) {
+	response := helpers.ResponseApi("Too many requests, Max request 5 per minute. Try again in "+time.Until(info.ResetTime).String(), http.StatusTooManyRequests, "request limit", nil)
+	c.JSON(http.StatusTooManyRequests, response)
 }

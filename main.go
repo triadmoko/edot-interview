@@ -5,19 +5,18 @@ import (
 	"github.com/triadmoko/edot-interview/configs"
 	"github.com/triadmoko/edot-interview/handlers"
 	"github.com/triadmoko/edot-interview/helpers"
-	"github.com/triadmoko/edot-interview/models"
 	"github.com/triadmoko/edot-interview/repositorys"
 	"github.com/triadmoko/edot-interview/services"
 )
 
 func main() {
-	log := helpers.NewLogger()
+	log := helpers.NewLogger("./tmp/logs.log", true)
 	db, err := configs.DB()
 	if err != nil {
 		log.Error(err.Error())
 	}
-	db.AutoMigrate(&models.Product{})
-	db.AutoMigrate(&models.Category{})
+	// db.AutoMigrate(&models.Product{})
+	// db.AutoMigrate(&models.Category{})
 	repository := repositorys.NewRepository(db)
 	service := services.NewService(repository, log)
 	handler := handlers.NewHandler(service)

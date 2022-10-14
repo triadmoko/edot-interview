@@ -10,9 +10,20 @@ require (
 
 require (
 	github.com/JGLTechnologies/gin-rate-limit v1.5.2 // indirect
+	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/PuerkitoBio/purell v1.1.1 // indirect
+	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/go-openapi/jsonpointer v0.19.5 // indirect
+	github.com/go-openapi/jsonreference v0.19.6 // indirect
+	github.com/go-openapi/spec v0.20.4 // indirect
+	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
+	github.com/josharian/intern v1.0.0 // indirect
+	github.com/mailru/easyjson v0.7.6 // indirect
+	github.com/swaggo/swag v1.8.1 // indirect
+	golang.org/x/tools v0.1.7 // indirect
 )
 
 require (
@@ -41,6 +52,9 @@ require (
 )
 
 require (
+	github.com/danielkov/gin-helmet v0.0.0-20171108135313-1387e224435e
+	github.com/gin-contrib/cors v1.4.0
+	github.com/gin-contrib/gzip v0.0.6
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert v1.2.1
 	github.com/jinzhu/inflection v1.0.0 // indirect
@@ -49,5 +63,7 @@ require (
 	github.com/restuwahyu13/go-supertest v0.0.3
 	github.com/smartystreets/goconvey v1.7.2
 	github.com/stretchr/testify v1.8.0 // indirect
+	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a
+	github.com/swaggo/gin-swagger v1.5.3
 	golang.org/x/sys v0.0.0-20221010170243-090e33056c14 // indirect
 )

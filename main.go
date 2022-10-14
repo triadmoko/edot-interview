@@ -4,8 +4,15 @@ import (
 	"net/http"
 	"time"
 
+	helmet "github.com/danielkov/gin-helmet"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/gzip"
+	_ "github.com/triadmoko/edot-interview/docs"
+
 	ratelimit "github.com/JGLTechnologies/gin-rate-limit"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/triadmoko/edot-interview/configs"
 	"github.com/triadmoko/edot-interview/handlers"
 	"github.com/triadmoko/edot-interview/helpers"
@@ -13,6 +20,17 @@ import (
 	"github.com/triadmoko/edot-interview/services"
 )
 
+// @title           Backend Golang Coding Interview
+// @version         1.0
+// @description     Documentation APIs triadmoko12@gmail.com for client.
+
+// @contact.name   Triadmoko Support
+// @contact.email  triadmoko@gmail.com
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:8080
 func main() {
 	log := helpers.NewLogger("./tmp/logs.log", true)
 	db, err := configs.DB()
@@ -28,7 +46,7 @@ func main() {
 	router := gin.Default()
 
 	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
-		Rate:  time.Minute,
+		Rate:  time.Second,
 		Limit: 5,
 	})
 	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
@@ -36,13 +54,23 @@ func main() {
 		KeyFunc:      keyFunc,
 	})
 
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:  []string{"*"},
+		AllowMethods:  []string{"*"},
+		AllowHeaders:  []string{"*"},
+		AllowWildcard: true,
+	}))
+
+	router.Use(helmet.Default())
+	router.Use(gzip.Gzip(gzip.BestCompression))
+
 	router.Use(mw)
 	product := router.Group("/product")
 	product.POST("/", handler.CreateProduct)
 	product.GET("/", handler.GetProducts)
 	product.GET("/:id", handler.GetProductByID)
 	product.PUT("/:id", handler.UpdateProduct)
-	product.PATCH("/:id", handler.UpdateProduct)
+	product.PATCH("/:id", handler.UpdateProductPatch)
 	product.DELETE("/:id", handler.DeleteProduct)
 
 	category := router.Group("/category")
@@ -52,7 +80,7 @@ func main() {
 	category.PUT("/:id", handler.UpdateCategory)
 	category.PATCH("/:id", handler.UpdateCategory)
 	category.DELETE("/:id", handler.DeleteCategory)
-
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Run()
 }
 func keyFunc(c *gin.Context) string {

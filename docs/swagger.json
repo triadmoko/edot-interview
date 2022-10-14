@@ -1,0 +1,312 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Documentation APIs triadmoko12@gmail.com for client.",
+        "title": "Backend Golang Coding Interview",
+        "contact": {
+            "name": "Triadmoko Support",
+            "email": "triadmoko@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/category": {
+            "get": {
+                "description": "Get All Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get All Category",
+                "responses": {}
+            },
+            "post": {
+                "description": "Create New Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create New Category",
+                "parameters": [
+                    {
+                        "description": "Category",
+                        "name": "Category",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/{id}": {
+            "get": {
+                "description": "Get Category By Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get Category By Category",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "put": {
+                "description": "Update Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update Category",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "delete": {
+                "description": "Delete Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "description": "Delete Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/product": {
+            "get": {
+                "description": "Get All Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get All Product",
+                "responses": {}
+            },
+            "post": {
+                "description": "Create New Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create New Product",
+                "parameters": [
+                    {
+                        "description": "Product",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Product"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/product/{id}": {
+            "get": {
+                "description": "Get Product By Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get Product By Product",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "put": {
+                "description": "Update Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update Product",
+                "responses": {}
+            },
+            "delete": {
+                "description": "Delete Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete Product",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "description": "Update Patch Product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update Patch Product",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "models.Category": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "gorm.Model",
+                    "type": "string"
+                }
+            }
+        },
+        "models.Product": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/definitions/models.Category"
+                },
+                "category_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "gorm.Model",
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

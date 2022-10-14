@@ -1,0 +1,214 @@
+definitions:
+  models.Category:
+    properties:
+      name:
+        description: gorm.Model
+        type: string
+    type: object
+  models.Product:
+    properties:
+      category:
+        $ref: '#/definitions/models.Category'
+      category_id:
+        type: integer
+      name:
+        description: gorm.Model
+        type: string
+      price:
+        type: integer
+      total:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: triadmoko@gmail.com
+    name: Triadmoko Support
+  description: Documentation APIs triadmoko12@gmail.com for client.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Backend Golang Coding Interview
+  version: "1.0"
+paths:
+  /category:
+    get:
+      consumes:
+      - application/json
+      description: Get All Category
+      produces:
+      - application/json
+      responses: {}
+      summary: Get All Category
+      tags:
+      - Category
+    post:
+      consumes:
+      - application/json
+      description: Create New Category
+      parameters:
+      - description: Category
+        in: body
+        name: Category
+        required: true
+        schema:
+          $ref: '#/definitions/models.Category'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create New Category
+      tags:
+      - Category
+  /category/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete Category
+      tags:
+      - Category
+    get:
+      consumes:
+      - application/json
+      description: Get Category By Category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get Category By Category
+      tags:
+      - Category
+    patch:
+      consumes:
+      - application/json
+      description: Delete Category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete Category
+      tags:
+      - Category
+    put:
+      consumes:
+      - application/json
+      description: Update Category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Update Category
+      tags:
+      - Category
+  /product:
+    get:
+      consumes:
+      - application/json
+      description: Get All Product
+      produces:
+      - application/json
+      responses: {}
+      summary: Get All Product
+      tags:
+      - Product
+    post:
+      consumes:
+      - application/json
+      description: Create New Product
+      parameters:
+      - description: Product
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create New Product
+      tags:
+      - Product
+  /product/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete Product
+      tags:
+      - Product
+    get:
+      consumes:
+      - application/json
+      description: Get Product By Product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get Product By Product
+      tags:
+      - Product
+    patch:
+      consumes:
+      - application/json
+      description: Update Patch Product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Update Patch Product
+      tags:
+      - Product
+    put:
+      consumes:
+      - application/json
+      description: Update Product
+      produces:
+      - application/json
+      responses: {}
+      summary: Update Product
+      tags:
+      - Product
+swagger: "2.0"

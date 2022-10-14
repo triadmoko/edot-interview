@@ -1,7 +1,6 @@
 package repositorys
 
 import (
-	"database/sql"
 	"errors"
 
 	"github.com/triadmoko/edot-interview/models"
@@ -18,9 +17,9 @@ type Repositorys interface {
 
 	// category
 	GetCategoryByID(id int) (*models.Category, error)
-	CreateCategory(Category models.Category) (*models.Category, error)
-	UpdateCategory(Category models.Category) (*models.Category, error)
-	DeleteCategory(id string) error
+	CreateCategory(category models.Category) (*models.Category, error)
+	UpdateCategory(category models.Category) (*models.Category, error)
+	DeleteCategory(id int) error
 	GetCategorys() ([]*models.Category, error)
 }
 type repositorys struct {
@@ -33,8 +32,8 @@ func NewRepository(db *gorm.DB) *repositorys {
 func (r *repositorys) GetProductByID(id int) (*models.Product, error) {
 	var product models.Product
 
-	err := r.db.First(&product, id).Preload("Category").Error
-	if err == sql.ErrNoRows {
+	err := r.db.Preload("Category").First(&product, id).Error
+	if err == gorm.ErrRecordNotFound {
 		return nil, errors.New("Product Not Found")
 	}
 	if err != nil {
@@ -46,7 +45,7 @@ func (r *repositorys) GetProductByID(id int) (*models.Product, error) {
 
 func (r *repositorys) CreateProduct(product models.Product) (*models.Product, error) {
 
-	err := r.db.Create(&product).Preload("Category").Error
+	err := r.db.Preload("Category").Create(&product).Error
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +71,7 @@ func (r *repositorys) DeleteProduct(id int) error {
 }
 func (r *repositorys) GetProducts() ([]*models.Product, error) {
 	var product []*models.Product
-	err := r.db.Find(&product).Error
+	err := r.db.Preload("Category").Find(&product).Error
 	if err != nil {
 		return nil, err
 	}
@@ -83,8 +82,8 @@ func (r *repositorys) GetCategoryByID(id int) (*models.Category, error) {
 	var category models.Category
 
 	err := r.db.First(&category, id).Error
-	if err == sql.ErrNoRows {
-		return nil, errors.New("category Not Found")
+	if err == gorm.ErrRecordNotFound {
+		return nil, errors.New("Category Not Found")
 	}
 	if err != nil {
 		return nil, err
@@ -111,7 +110,7 @@ func (r *repositorys) UpdateCategory(category models.Category) (*models.Category
 	return &category, nil
 }
 
-func (r *repositorys) DeleteCategory(id string) error {
+func (r *repositorys) DeleteCategory(id int) error {
 	var category *models.Category
 	err := r.db.Where("id = ? ", id).Delete(&category).Error
 	if err != nil {

@@ -1,0 +1,10 @@
+2022-10-14 14:00:27,678 - service.go - [line:43] - [31mERROR[0m msg ▶ failed get category record not found
+2022-10-14 14:01:31,678 - service.go - [line:44] - [31mERROR[0m msg ▶ failed get category record not found
+2022-10-14 14:03:20,678 - service.go - [line:44] - [31mERROR[0m msg ▶ failed get category category Not Found
+2022-10-14 14:14:41,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id category Not Found
+2022-10-14 14:16:06,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id category Not Found
+2022-10-14 14:17:43,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id category Not Found
+2022-10-14 14:17:44,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id category Not Found
+2022-10-14 14:19:13,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id Category Not Found
+2022-10-14 14:19:40,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id Category Not Found
+2022-10-14 14:19:57,678 - service.go - [line:98] - [31mERROR[0m msg ▶ failed get Category by id Category Not Found

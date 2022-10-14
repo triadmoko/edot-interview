@@ -31,7 +31,6 @@ func (mf *MyFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		b = &bytes.Buffer{}
 	}
 	level := levelList[int(entry.Level)]
-	fmt.Println(level)
 	switch level {
 	case "ERROR":
 		level = color.RedString("%s", "ERROR")

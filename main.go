@@ -32,12 +32,12 @@ func main() {
 	product.DELETE("/:id", handler.DeleteProduct)
 
 	category := router.Group("/category")
-	category.POST("/")
-	category.GET("/")
-	category.GET("/:id")
-	category.PUT("/:id")
-	category.PATCH("/:id")
-	category.DELETE("/:id")
+	category.POST("/", handler.CreateCategory)
+	category.GET("/", handler.GetCategorys)
+	category.GET("/:id", handler.GetCategoryByID)
+	category.PUT("/:id", handler.UpdateCategory)
+	category.PATCH("/:id", handler.UpdateCategory)
+	category.DELETE("/:id", handler.DeleteCategory)
 
 	router.Run()
 }

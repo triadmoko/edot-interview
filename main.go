@@ -25,11 +25,11 @@ func main() {
 
 	product := router.Group("/product")
 	product.POST("/", handler.CreateProduct)
-	product.GET("/")
-	product.GET("/:id")
-	product.PUT("/:id")
-	product.PATCH("/:id")
-	product.DELETE("/:id")
+	product.GET("/", handler.GetProducts)
+	product.GET("/:id", handler.GetProductByID)
+	product.PUT("/:id", handler.UpdateProduct)
+	product.PATCH("/:id", handler.UpdateProduct)
+	product.DELETE("/:id", handler.DeleteProduct)
 
 	category := router.Group("/category")
 	category.POST("/")

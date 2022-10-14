@@ -13,7 +13,7 @@ type Repositorys interface {
 	GetProductByID(id int) (*models.Product, error)
 	CreateProduct(product models.Product) (*models.Product, error)
 	UpdateProduct(product models.Product) (*models.Product, error)
-	DeleteProduct(id string) error
+	DeleteProduct(id int) error
 	GetProducts() ([]*models.Product, error)
 
 	// category
@@ -33,7 +33,7 @@ func NewRepository(db *gorm.DB) *repositorys {
 func (r *repositorys) GetProductByID(id int) (*models.Product, error) {
 	var product models.Product
 
-	err := r.db.First(&product, id).Error
+	err := r.db.First(&product, id).Preload("Category").Error
 	if err == sql.ErrNoRows {
 		return nil, errors.New("Product Not Found")
 	}
@@ -46,7 +46,7 @@ func (r *repositorys) GetProductByID(id int) (*models.Product, error) {
 
 func (r *repositorys) CreateProduct(product models.Product) (*models.Product, error) {
 
-	err := r.db.Create(&product).Error
+	err := r.db.Create(&product).Preload("Category").Error
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (r *repositorys) UpdateProduct(product models.Product) (*models.Product, er
 	return &product, nil
 }
 
-func (r *repositorys) DeleteProduct(id string) error {
+func (r *repositorys) DeleteProduct(id int) error {
 	var product *models.Product
 	err := r.db.Where("id = ? ", id).Delete(&product).Error
 	if err != nil {
